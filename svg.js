@@ -16,7 +16,10 @@ document.addEventListener('DOMContentLoaded', _ => {
     const SVGs = [
         firstSVG(),
         secondSVG(),
-        thirdSVG(css)
+        thirdSVG(css),
+        fourthSVG(css),
+        fifthSVG(),
+        sixthSVG()
     ]
     
     SVGs.forEach(SVG => document.body.appendChild(SVG));
@@ -186,6 +189,179 @@ function thirdSVG(css) {
     circle5.cy = 110;
     circle5.r = 5;
     circle5.appendTo(SVG);
+
+    return SVG;
+}
+
+function fourthSVG(css) {
+    const SVG = initializeSVG(200, 200);
+    SVG.setAttribute('class', 'house');
+
+    const polygon = new Vector('polygon');
+    polygon.class = 'wall';
+    polygon.points = '35,180 35,90 100,30 165,90 165,180';
+    polygon.appendTo(SVG);
+
+    const houseS = new CSSRule('.house');
+    houseS.stroke = 'black';
+    houseS.stroke_width = '2px';
+    houseS.fill = 'white';
+    houseS.appendTo(css);
+
+    const polyline = new Vector('polyline');
+    polyline.class = 'roof';
+    polyline.points = '25,92 100,22 175,92';
+    polyline.appendTo(SVG);
+
+    const roofS = new CSSRule('.house .roof');
+    roofS.fill = 'none';
+    roofS.stroke = '#D45';
+    roofS.stroke_width = '10px';
+    roofS.stroke_linecap = 'round';
+    roofS.appendTo(css);
+
+    const rect = new Vector('rect');
+    rect.class = 'door';
+    rect.x = 55;
+    rect.y = 110;
+    rect.width = 30;
+    rect.height = 60;
+    rect.rx = 2;
+    rect.appendTo(SVG);
+
+    const doorS = new CSSRule('.house .door');
+    doorS.fill = '#D45';
+    doorS.appendTo(css);
+
+    const circle = new Vector('circle');
+    circle.class = 'door-knob';
+    circle.cx = 65;
+    circle.cy = 140;
+    circle.r = 2;
+    circle.appendTo(SVG);
+
+    const rect2 = new Vector('rect');
+    rect2.class = 'stair';
+    rect2.x = 53;
+    rect2.y = 170;
+    rect2.width = 34;
+    rect2.height = 5;
+    rect2.appendTo(SVG);
+    
+    const rect3 = new Vector('rect');
+    rect3.class = 'stair';
+    rect3.x = 51;
+    rect3.y = 175;
+    rect3.width = 38;
+    rect3.height = 5;
+    rect3.appendTo(SVG);
+
+    const stairS = new CSSRule('.house .stair');
+    stairS.fill = 'gray';
+    stairS.appendTo(css);
+
+    const rect4 = new Vector('rect');
+    rect4.class = 'window';
+    rect4.x = 105;
+    rect4.y = 115;
+    rect4.width = 40;
+    rect4.height = 35;
+    rect4.rx = 5;
+    rect4.appendTo(SVG);
+
+    const line = new Vector('line');
+    line.x1 = 105;
+    line.y1 = 132.5;
+    line.x2 = 145;
+    line.y2 = 132.5;
+    line.appendTo(SVG);
+    
+    const line2 = new Vector('line');
+    line2.x1 = 125;
+    line2.y1 = 115;
+    line2.x2 = 125;
+    line2.y2 = 150;
+    line2.appendTo(SVG);
+
+    const rect5 = new Vector('rect');
+    rect5.class = 'window-sill';
+    rect5.x = 102;
+    rect5.y = 148;
+    rect5.width = 46;
+    rect5.height = 5;
+    rect5.rx = 5;
+    rect5.appendTo(SVG);
+
+    const circle2 = new Vector('circle');
+    circle2.class = 'window';
+    circle2.cx = 100;
+    circle2.cy = 75;
+    circle2.r = 15;
+    circle2.appendTo(SVG);
+
+    const line3 = new Vector('line');
+    line3.x1 = 85;
+    line3.y1 = 75;
+    line3.x2 = 115;
+    line3.y2 = 75;
+    line3.appendTo(SVG);
+    
+    const line4 = new Vector('line');
+    line4.x1 = 100;
+    line4.y1 = 60;
+    line4.x2 = 100;
+    line4.y2 = 90;
+    line4.appendTo(SVG);
+    
+    const windowS = new CSSRule('.house .window');
+    windowS.fill = '#FE9';
+    windowS.appendTo(css);
+
+    const windowSillS = new CSSRule('.house .window-sill');
+    windowSillS.fill = '#D45';
+    windowSillS.stroke_linecap = 'round';
+    windowSillS.appendTo(css);
+
+    return SVG;
+}
+
+function fifthSVG() {
+    const SVG = initializeSVG(200, 200);
+
+    const arrow = new Vector('path');
+    arrow.d = 'M 30 100'
+            + 'L 170 100'
+            + 'L 130 50'
+            + 'M 170 100'
+            + 'L 130 150';
+    arrow.fill = 'none';
+    arrow.stroke = '#D45';
+    arrow.stroke_width = 25;
+    arrow.stroke_linecap = 'round';
+    arrow.stroke_linejoin = 'round';
+    arrow.appendTo(SVG);
+
+    return SVG;
+}
+
+function sixthSVG() {
+    const SVG = initializeSVG(200, 200);
+
+    // const g = new Vector('g');
+    // g.appendTo(SVG);
+    
+    // const g1 = new Vector('g');
+    // g1.appendTo(g);
+
+    // const polygon = new Vector('polygon');
+    // polygon.points = '100,100 136,50 100,0';
+    // polygon.fill = '#EDB';
+    // polygon.appendTo(g1);
+    
+    // const polygon2 = new Vector('polygon');
+    // polygon2.points = '100,100 64,50 100,0';
+    // polygon2.fill = '#EC9';
+    // polygon2.appendTo(g1);
 
     return SVG;
 }
