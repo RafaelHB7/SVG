@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', _ => {
     svgS.appendTo(css);
 
     const bodyS = new CSSRule('body');
-    bodyS.display = 'flex';
+    bodyS.display = 'grid';
     bodyS.gap = '8px';
     bodyS.appendTo(css);
 
@@ -21,6 +21,19 @@ document.addEventListener('DOMContentLoaded', _ => {
         fifthSVG(),
         sixthSVG()
     ]
+
+    const nth1S = new CSSRule('body :nth-child(3)');
+    nth1S.grid_column = '2';
+    nth1S.grid_row = '1/3';
+    nth1S.appendTo(css);
+
+    const nth2S = new CSSRule('body :nth-child(4)');
+    nth2S.grid_column = '3';
+    nth2S.appendTo(css);
+
+    const nth3S = new CSSRule('body :nth-child(5)');
+    nth3S.grid_row = '2';
+    nth3S.appendTo(css);
     
     SVGs.forEach(SVG => document.body.appendChild(SVG));
     document.head.appendChild(css);
@@ -347,21 +360,27 @@ function fifthSVG() {
 function sixthSVG() {
     const SVG = initializeSVG(200, 200);
 
-    // const g = new Vector('g');
-    // g.appendTo(SVG);
+    const g = new Vector('g');
+    g.transform = "translate(100 105)";
+    g.appendTo(SVG);
     
-    // const g1 = new Vector('g');
-    // g1.appendTo(g);
-
-    // const polygon = new Vector('polygon');
-    // polygon.points = '100,100 136,50 100,0';
-    // polygon.fill = '#EDB';
-    // polygon.appendTo(g1);
+    const angles = [0, 72, -72, 144, -144];
     
-    // const polygon2 = new Vector('polygon');
-    // polygon2.points = '100,100 64,50 100,0';
-    // polygon2.fill = '#EC9';
-    // polygon2.appendTo(g1);
+    for (let angle of angles) {
+        const g1 = new Vector('g');
+        g1.transform = `rotate(${angle})`;
+        g1.appendTo(g);
+    
+        const polygon = new Vector('polygon');
+        polygon.points = '0,0 36,-50 0,-100';
+        polygon.fill = '#EDB';
+        polygon.appendTo(g1);
+        
+        const polygon2 = new Vector('polygon');
+        polygon2.points = '0,0 -36,-50 0,-100';
+        polygon2.fill = '#EC9';
+        polygon2.appendTo(g1);
+    }
 
     return SVG;
 }

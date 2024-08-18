@@ -6,6 +6,7 @@ export class Vector {
     }
 
     appendTo(svg) {
+        svg = svg.element ? svg.element : svg;
         this.setAttributes();
         svg.appendChild(this.element);
     }
