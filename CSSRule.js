@@ -13,6 +13,7 @@ export class CSSRule {
         delete this.selector;
         return selector 
                 + JSON.stringify(this)
+                .replace(/\$\b(\w+)\b":\s*"([^"]*)"\s*(?:,\s*)?/g, '$1{$2}')
                 .replace(/"/g, '')
                 .replace(/,/g, ';')
                 .replace(/_/g, '-');

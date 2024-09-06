@@ -1,7 +1,15 @@
 export class Vector {
     static NS = 'http://www.w3.org/2000/svg';
     
-    constructor(element) {
+    constructor(element, transform) {
+        if (element.includes('#')) {
+            this.element = document.createElementNS(Vector.NS, 'use');
+            this.href = element;
+            if (transform) {
+                this.transform = transform;
+            }
+            return;
+        }
         this.element = document.createElementNS(Vector.NS, element);
     }
 

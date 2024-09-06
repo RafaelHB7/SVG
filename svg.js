@@ -13,18 +13,66 @@ document.addEventListener('DOMContentLoaded', _ => {
     bodyS.gap = '8px';
     bodyS.appendTo(css);
 
-    const nth1S = new CSSRule('body :nth-child(3)');
-    nth1S.grid_column = '2';
-    nth1S.grid_row = '1/3';
+    const nth1S = new CSSRule('body > :nth-child(2)');
+    nth1S.grid_row = 2;
     nth1S.appendTo(css);
 
-    const nth2S = new CSSRule('body :nth-child(4)');
-    nth2S.grid_column = '3';
+    const nth2S = new CSSRule('body > :nth-child(3)');
+    nth2S.grid_column = 2;
+    nth2S.grid_row = '2/4';
     nth2S.appendTo(css);
 
-    const nth3S = new CSSRule('body :nth-child(5)');
-    nth3S.grid_row = '2';
+    const nth3S = new CSSRule('body > :nth-child(4)');
+    nth3S.grid_column = 3;
+    nth3S.grid_row = 2;
     nth3S.appendTo(css);
+    
+    const nth4S = new CSSRule('body > :nth-child(5)');
+    nth4S.grid_column = 1;
+    nth4S.grid_row = 3;
+    nth4S.appendTo(css);
+    
+    const nth5S = new CSSRule('body > :nth-child(6)');
+    nth5S.grid_row = 3;
+    nth5S.appendTo(css);
+
+    const nth6S = new CSSRule('body > :nth-child(7)');
+    nth6S.grid_row = 4;
+    nth6S.appendTo(css);
+
+    const nth7S = new CSSRule('body > :nth-child(8)');
+    nth7S.grid_row = 4;
+    nth7S.appendTo(css);
+    
+    const nth8S = new CSSRule('body > :nth-child(9)');
+    nth8S.grid_row = 6;
+    nth8S.appendTo(css);
+
+    const nth9S = new CSSRule('body > :nth-child(10)');
+    nth9S.grid_row = 6;
+    nth9S.appendTo(css);
+
+    const nth10S = new CSSRule('body > :nth-child(11)');
+    nth10S.grid_row = '4/7';
+    nth10S.appendTo(css);
+
+    const nth11S = new CSSRule('body > :nth-child(12)');
+    nth11S.grid_column = 4;
+    nth11S.grid_row = '1/3';
+    nth11S.appendTo(css);
+    
+    const nth12S = new CSSRule('body > :nth-child(13)');
+    nth12S.grid_column = 5;
+    nth12S.appendTo(css);
+    
+    // const nth13S = new CSSRule('body > :nth-child(14)');
+    // nth13S.grid_row = 2;
+    // nth13S.appendTo(css);
+    
+    const nth14S = new CSSRule('body > :nth-child(15)');
+    nth14S.grid_column = 6;
+    nth14S.grid_row = '1/3';
+    nth14S.appendTo(css);
 
     const SVGs = [
         firstSVG()
@@ -34,6 +82,23 @@ document.addEventListener('DOMContentLoaded', _ => {
         , fifthSVG()
         , sixthSVG()
         , seventhSVG()
+        , eighthSVG()
+        , ninthSVG()
+        , tenth(css)
+        , eleventh()
+        , twelfth(css)
+        , thirteenth()
+        , fourteenth()
+        , fifteenth()
+        , sixteenth()
+        , seventeenth()
+        , eighteenth()
+        , nineteenth()
+        , twentieth()
+        , twentyFirst()
+        , twentySecond()
+        , twentyThird()
+        , twentyFourth()
     ]
     
     SVGs.forEach(SVG => document.body.appendChild(SVG));
@@ -339,11 +404,11 @@ function fifthSVG() {
     const SVG = initializeSVG(200, 200);
 
     const arrow = new Vector('path');
-    arrow.d = 'M -70 0'
-            + 'L 70 0'
-            + 'L 30 -50'
-            + 'M 70 0'
-            + 'L 30 50';
+    arrow.d = `M -70 0
+            L 70 0
+            L 30 -50
+            M 70 0
+            L 30 50`;
     arrow.fill = 'none';
     arrow.stroke = '#D45';
     arrow.stroke_width = 25;
@@ -425,6 +490,261 @@ function seventhSVG() {
     line2.y2 = -35;
     line2.stroke_width = 6;
     line2.appendTo(g);
+
+    return SVG;
+}
+
+function eighthSVG() {
+    const SVG = initializeSVG(200, 200);
+
+    const path = new Vector('path');
+    path.id = 'branch';
+    path.d = `M 0 0 L 0 -90
+            M 0 -20 L 20 -34
+            M 0 -20 L -20 -34
+            M 0 -40 L 20 -54
+            M 0 -40 L -20 -54
+            M 0 -60 L 20 -74
+            M 0 -60 L -20 -74`;
+    path.stroke = '#EC9';
+    path.stroke_width = 5;
+    path.appendTo(SVG);
+
+    new Vector('#branch', 'rotate(60)')
+            .appendTo(SVG);
+
+    new Vector('#branch', 'rotate(120)')
+            .appendTo(SVG);
+
+    new Vector('#branch', 'rotate(180)')
+            .appendTo(SVG);
+
+    new Vector('#branch', 'rotate(240)')
+            .appendTo(SVG);
+
+    new Vector('#branch', 'rotate(300)')
+            .appendTo(SVG);
+
+    return SVG;
+}
+
+function ninthSVG() {
+    const SVG = initializeSVG(200, 200);
+    
+    const defs = new Vector('defs');
+    defs.appendTo(SVG);
+
+    const g = new Vector('g');
+    g.id = 'tree';
+    g.appendTo(defs);
+
+    const leaves = new Vector('polygon');
+    leaves.points = '-10,0 10,0 0 -50';
+    leaves.fill = '#375';
+    leaves.appendTo(g);
+
+    const log = new Vector('line');
+    log.y2 = 10;
+    log.stroke = '#787';
+    log.stroke_width = 2;
+    log.appendTo(g);
+
+    const sky = new Vector('rect');
+    sky.x = -100;
+    sky.y = -100;
+    sky.width = 200;
+    sky.height = 200;
+    sky.fill = '#FEC';
+    sky.appendTo(SVG);
+    
+    const ground = new Vector('circle');
+    ground.cy = 380;
+    ground.r = 350;
+    ground.fill = '#FFE';
+    ground.appendTo(SVG);
+
+    const tree = new Vector('#tree', 'scale(2)');
+    tree.x = -30;
+    tree.y = 25;
+    tree.appendTo(SVG);
+    
+    const tree2 = new Vector('#tree', 'scale(1.2)');
+    tree2.x = -20;
+    tree2.y = 40;
+    tree2.appendTo(SVG);
+
+    const tree3 = new Vector('#tree');
+    tree3.x = 40;
+    tree3.y = 40;
+    tree3.appendTo(SVG);
+
+    const tree4 = new Vector('#tree', 'scale(1.5)');
+    tree4.x = 50;
+    tree4.y = 30;
+    tree4.appendTo(SVG);
+
+    return SVG;
+}
+
+function tenth(css) {
+    const SVG = initializeSVG(200, 400);
+    SVG.setAttribute('fill', 'rgba(0, 0, 0, 0.5)');
+
+    const windmill = new Vector('g');
+    windmill.transform = 'translate(0, -50)';
+    windmill.appendTo(SVG);
+
+    const head = new Vector('g');
+    head.id = 'head';
+    head.appendTo(windmill);
+
+    const center = new Vector('circle');
+    center.r = 8;
+    center.appendTo(head);
+
+    const arm = new Vector('path');
+    arm.id = 'arm';
+    arm.d = `M -7 -20 
+            C -7 -10 7 -10 7 -20 
+            L 2 -80 
+            L -2 -80`;
+    arm.appendTo(head);
+
+    new Vector('#arm', 'rotate(120)')
+            .appendTo(head);
+
+    new Vector('#arm', 'rotate(-120)')
+            .appendTo(head);
+
+    const pole = new Vector('path');
+    pole.d = `M -7 100
+            L 7 100
+            L 3 -35
+            L -3 -35`;
+    pole.appendTo(SVG);
+
+    const headS = new CSSRule('#head');
+    headS.animation = 'rotate 4s infinite linear';
+    headS.appendTo(css);
+
+    const rotateS = new CSSRule('@keyframes rotate');
+    rotateS.$from = 'transform: rotate(0deg);';
+    rotateS.$to = 'transform: rotate(360deg);';
+    rotateS.appendTo(css);
+
+    return SVG;
+}
+
+function eleventh() {
+    const SVG = initializeSVG(200, 400);
+
+    const tree = new Vector('path');
+    tree.d = `M 0 -80
+            Q 5 -75 0 -70
+            Q -10 -65 0 -60
+            Q 15 -55 0 -50
+            Q -20 -45 0 -40
+            Q 25 -35 0 -30
+            Q -30 -25 0 -20
+            Q 35 -15 0 -10
+            Q -40 -5 0 0
+            Q 45 5 0 10
+            Q -50 15 0 20
+            Q 55 25 0 30
+            Q -60 35 0 40
+            Q 65 45 0 50
+            Q -70 55 0 60
+            Q 75 65 0 70
+            Q -80 75 0 80
+            Q 85 85 0 90
+            Q -90 95 0 100
+            Q 95 105 0 110
+            Q -100 115 0 120
+            L 0 140
+            L 20 140
+            L -20 140`;
+    tree.fill = 'none';
+    tree.stroke = '#054';
+    tree.stroke_width = 5;
+    tree.appendTo(SVG);
+
+    return SVG;
+}
+
+function twelfth() {
+    const SVG = initializeSVG(200, 200);
+
+    return SVG;
+}
+
+function thirteenth() {
+    const SVG = initializeSVG(200, 200);
+
+    return SVG;
+}
+
+function fourteenth() {
+    const SVG = initializeSVG(200, 400);
+
+    return SVG;
+}
+
+function fifteenth() {
+    const SVG = initializeSVG(200, 200);
+
+    return SVG;
+}
+
+function sixteenth() {
+    const SVG = initializeSVG(200, 400);
+
+    return SVG;
+}
+
+function seventeenth() {
+    const SVG = initializeSVG(200, 200);
+
+    return SVG;
+}
+
+function eighteenth() {
+    const SVG = initializeSVG(200, 200);
+
+    return SVG;
+}
+
+function nineteenth() {
+    const SVG = initializeSVG(200, 200);
+
+    return SVG;
+}
+
+function twentieth() {
+    const SVG = initializeSVG(400, 200);
+
+    return SVG;
+}
+
+function twentyFirst() {
+    const SVG = initializeSVG(200, 200);
+
+    return SVG;
+}
+
+function twentySecond() {
+    const SVG = initializeSVG(400, 200);
+
+    return SVG;
+}
+
+function twentyThird() {
+    const SVG = initializeSVG(200, 200);
+
+    return SVG;
+}
+
+function twentyFourth() {
+    const SVG = initializeSVG(200, 200);
 
     return SVG;
 }
