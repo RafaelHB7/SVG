@@ -65,14 +65,36 @@ document.addEventListener('DOMContentLoaded', _ => {
     nth12S.grid_column = 5;
     nth12S.appendTo(css);
     
-    // const nth13S = new CSSRule('body > :nth-child(14)');
-    // nth13S.grid_row = 2;
-    // nth13S.appendTo(css);
-    
     const nth14S = new CSSRule('body > :nth-child(15)');
     nth14S.grid_column = 6;
     nth14S.grid_row = '1/3';
     nth14S.appendTo(css);
+
+    const nth16S = new CSSRule('body > :nth-child(17)');
+    nth16S.grid_column = 5;
+    nth16S.grid_row = '3/6';
+    nth16S.appendTo(css);
+
+    const nth19S = new CSSRule('body > :nth-child(19)');
+    nth19S.grid_column = 6;
+    nth19S.appendTo(css);
+
+    const nth18S = new CSSRule('body > :nth-child(20)');
+    nth18S.grid_row = 6;
+    nth18S.appendTo(css);
+
+    const nth20S = new CSSRule('body > :nth-child(21)');
+    nth20S.grid_column = '5/7';
+    nth20S.grid_row = 6;
+    nth20S.appendTo(css);
+
+    const nth21S = new CSSRule('body > :nth-child(22)');
+    nth21S.grid_row = 7;
+    nth21S.appendTo(css);
+
+    const nth22S = new CSSRule('body > :nth-child(23)');
+    nth22S.grid_column = '2/4';
+    nth22S.appendTo(css);
 
     const SVGs = [
         firstSVG()
@@ -88,7 +110,7 @@ document.addEventListener('DOMContentLoaded', _ => {
         , eleventh()
         , twelfth(css)
         , thirteenth()
-        , fourteenth()
+        , fourteenth(css)
         , fifteenth()
         , sixteenth()
         , seventeenth()
@@ -671,8 +693,80 @@ function eleventh() {
     return SVG;
 }
 
-function twelfth() {
+function twelfth(css) {
     const SVG = initializeSVG(200, 200);
+
+    const circle = new Vector('circle');
+    circle.cy = -50;
+    circle.r = 10;
+    circle.fill = '#A12';
+    circle.appendTo(SVG);
+
+    const box = new Vector('rect');
+    box.class = 'box';
+    box.x = -60;
+    box.y = -40;
+    box.width = 120;
+    box.height = 100;
+    box.appendTo(SVG);
+
+    const boxLid = new Vector('rect');
+    boxLid.class = 'box';
+    boxLid.x = -70;
+    boxLid.y = -47;
+    boxLid.width = 140;
+    boxLid.height = 20;
+    boxLid.appendTo(SVG);
+
+    const stripe = new Vector('rect');
+    stripe.class = 'stripe';
+    stripe.x = -20;
+    stripe.y = -40;
+    stripe.width = 40;
+    stripe.height = 100;
+    stripe.appendTo(SVG);
+    
+    const stripeLid = new Vector('rect');
+    stripeLid.class = 'stripe';
+    stripeLid.x = -25;
+    stripeLid.y = -47;
+    stripeLid.width = 50;
+    stripeLid.height = 20;
+    stripeLid.appendTo(SVG);
+
+    const leftRibbon = new Vector('path');
+    leftRibbon.class = 'ribbon';
+    leftRibbon.d = `M 0 -50
+            L 30 -50
+            C 50 -50 50 -70 30 -65
+            L 0 -50`;
+    leftRibbon.appendTo(SVG);
+
+    const rightRibbon = new Vector('path');
+    rightRibbon.class = 'ribbon';
+    rightRibbon.d = `M 0 -50
+            L -30 -50
+            C -50 -50 -50 -70 -30 -65
+            L 0 -50`;
+    rightRibbon.appendTo(SVG);
+
+    const boxS = new CSSRule('.box');
+    boxS.fill = '#D45';
+    boxS.stroke = 'black';
+    boxS.stroke_width = 2;
+    boxS.appendTo(css);
+    
+    const stripeS = new CSSRule('.stripe');
+    stripeS.fill = 'white';
+    stripeS.stroke = 'black';
+    stripeS.stroke_width = 2;
+    stripeS.appendTo(css);
+
+    const ribbonS = new CSSRule('.ribbon');
+    ribbonS.stroke = '#B33';
+    ribbonS.stroke_width = 4;
+    ribbonS.fill = 'none';
+    ribbonS.appendTo(css);
 
     return SVG;
 }
@@ -680,11 +774,128 @@ function twelfth() {
 function thirteenth() {
     const SVG = initializeSVG(200, 200);
 
+    const g = new Vector('g');
+    g.stroke = 'black';
+    g.stroke_width = 2;
+    g.appendTo(SVG);
+
+    const circle = new Vector('circle');
+    circle.cy = -45;
+    circle.r = 7;
+    circle.fill = '#467';
+    circle.appendTo(g);
+
+    const circle2 = new Vector('circle');
+    circle2.cy = 50;
+    circle2.r = 10;
+    circle2.fill = '#F95';
+    circle2.appendTo(g);
+
+    const bell = new Vector('path');
+    bell.d = `M -50 40
+            L -50 50
+            L 50 50
+            L 50 40
+            Q 40 40 40 10
+            C 40 -60 -40 -60 -40 10
+            Q -40 40 -50 40`;
+    bell.fill = '#FE9';
+    bell.appendTo(g);
+
     return SVG;
 }
 
-function fourteenth() {
+function fourteenth(css) {
     const SVG = initializeSVG(200, 400);
+
+    const body = new Vector('path');
+    body.class = 'body';
+    body.d = `M 50 120
+            L 50 -80
+            A 50 50 0 0 0 -50 -80`;
+    body.stroke = '#C83';
+    body.stroke_width = 45;
+    body.appendTo(SVG);
+
+    const innerBody = new Vector('path');
+    innerBody.class = 'body';
+    innerBody.d = `M 50 120
+            L 50 -80
+            A 50 50 0 0 0 -50 -80`;
+    innerBody.stroke = 'white';
+    innerBody.stroke_width = 40;
+    innerBody.appendTo(SVG);
+
+    const line = new Vector('line');
+    line.x1 = -35;
+    line.y1 = -90;
+    line.x2 = -60;
+    line.y2 = -100;
+    line.class='green-mark';
+    line.appendTo(SVG);
+    
+    const line2 = new Vector('line');
+    line2.x1 = -15;
+    line2.y1 = -115;
+    line2.x2 = -25;
+    line2.y2 = -135;
+    line2.class='red-mark';
+    line2.appendTo(SVG);
+
+    const line3 = new Vector('line');
+    line3.x1 = 20;
+    line3.y1 = -110;
+    line3.x2 = 35;
+    line3.y2 = -130;
+    line3.class='green-mark';
+    line3.appendTo(SVG);
+
+    const line4 = new Vector('line');
+    line4.x1 = 40;
+    line4.y1 = -60;
+    line4.x2 = 60;
+    line4.y2 = -80;
+    line4.class='red-mark';
+    line4.appendTo(SVG);
+
+    const line5 = new Vector('line');
+    line5.x1 = 40;
+    line5.y1 = -10;
+    line5.x2 = 60;
+    line5.y2 = -30;
+    line5.class='green-mark';
+    line5.appendTo(SVG);
+
+    const line6 = new Vector('line');
+    line6.x1 = 40;
+    line6.y1 = 40;
+    line6.x2 = 60;
+    line6.y2 = 20;
+    line6.class='red-mark';
+    line6.appendTo(SVG);
+
+    const line7 = new Vector('line');
+    line7.x1 = 40;
+    line7.y1 = 90;
+    line7.x2 = 60;
+    line7.y2 = 70;
+    line7.class='green-mark';
+    line7.appendTo(SVG);
+
+    const bodyS = new CSSRule('.body');
+    bodyS.stroke_linecap = 'round';
+    bodyS.fill = 'none';
+    bodyS.appendTo(css);
+
+    const redmark = new CSSRule('.red-mark');
+    redmark.stroke = '#D45';
+    redmark.stroke_width = 2.5;
+    redmark.appendTo(css);
+    
+    const greenmark = new CSSRule('.green-mark');
+    greenmark.stroke = '#243';
+    greenmark.stroke_width = 2.5;
+    greenmark.appendTo(css);
 
     return SVG;
 }
